@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOLADO HUB | Scripts Premium para Roblox</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff3c78;
+            --primary-dark: #d42c5e;
+            --secondary: #00d9ff;
+            --dark: #0a0a1a;
+            --darker: #050511;
+            --light: #ffffff;
+            --gray: #8a8aa3;
+            --card-bg: rgba(20, 20, 40, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Oxanium', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, var(--darker) 0%, #1a0a2e 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        /* Efeito de partículas animadas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--secondary);
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header com efeito de neon */
+        .header {
+            text-align: center;
+            margin: 30px 0 50px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 25px rgba(255, 60, 120, 0.5);
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 6px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+            border-radius: 50%;
+            filter: blur(2px);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* Banner de promoção animado */
+        .promo-banner {
+            background: linear-gradient(90deg, var(--primary), #ff6a95);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 0 auto 40px;
+            max-width: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 5px 25px rgba(255, 60, 120, 0.4);
+            animation: pulse 2s infinite;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 60, 120, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 60, 120, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 60, 120, 0); }
+        }
+
+        .promo-banner i {
+            font-size: 2rem;
+            animation: spin 3s infinite linear;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .promo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .promo-text span {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin: 0 5px;
+        }
+
+        /* Botões de navegação com efeito brilhante */
+        .nav-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .nav-btn {
+            padding: 18px 35px;
+            background: linear-gradient(145deg, var(--primary-dark), var(--primary));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(255, 60, 120, 0.3);
+            z-index: 1;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+            z-index: -1;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(255, 60, 120, 0.5);
+        }
+
+        .nav-btn i {
+            font-size: 1.3rem;
+        }
+
+        /* Barra de busca moderna */
+        .search-container {
+            position: relative;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 22px 70px 22px 30px;
+            background: rgba(30, 30, 50, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .search-box::placeholder {
+            color: var(--gray);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--secondary);
+            border: none;
+            padding: 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--darker);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.4);
+        }
+
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            background: #00c7e6;
+        }
+
+        /* Grid de scripts com efeito 3D */
+        .scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            margin-bottom: 60px;
+        }
+
+        .script-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .script-card:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+            border-color: rgba(0, 217, 255, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.2);
+            background: rgba(25, 25, 45, 0.8);
+        }
+
+        .script-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        .script-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .status-indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #00ff40;
+            box-shadow: 0 0 10px #00ff40;
+            animation: blink 1.5s infinite;
+            flex-shrink: 0;
+        }
+
+        .status-indicator.offline {
+            background: #ff3333;
+            box-shadow: 0 0 10px #ff3333;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.5; }
+        }
+
+        .script-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--light);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .game-badge {
+            background: rgba(0, 217, 255, 0.2);
+            color: var(--secondary);
+            font-size: 0.9rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-left: auto;
+        }
+
+        .script-description {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.7;
+            min-height: 80px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .feature {
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--secondary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .script-code {
+            background: rgba(10, 10, 20, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 18px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: var(--light);
+            margin-bottom: 20px;
+            overflow-x: auto;
+            position: relative;
+            word-break: break-all;
+            font-weight: 600;
+        }
+
+        .copy-btn {
+            background: linear-gradient(145deg, var(--primary), var(--primary-dark));
+            border: none;
+            padding: 16px 25px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 20px rgba(255, 60, 120, 0.3);
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(255, 60, 120, 0.5);
+        }
+
+        .copy-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background: linear-gradient(145deg, #666, #444);
+        }
+
+        .copy-btn:disabled:hover {
+            transform: none;
+            box-shadow: 0 5px 20px rgba(255, 60, 120, 0.3);
+        }
+
+        /* Seção de estatísticas */
+        .stats-section {
+            background: rgba(15, 15, 35, 0.7);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--light);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: rgba(25, 25, 45, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: rgba(35, 35, 65, 0.6);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--light), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+
+        /* Footer com efeito gradiente */
+        .footer {
+            background: linear-gradient(to top, rgba(10, 10, 30, 0.9), rgba(20, 10, 40, 0.7));
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--light);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            color: var(--gray);
+            font-size: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1100px) {
+            .logo {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                max-width: 350px;
+                justify-content: center;
+            }
+            
+            .scripts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .promo-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .promo-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .script-card {
+                padding: 25px;
+            }
+            
+            .script-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeito de partículas animadas -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">BOLADO HUB</h1>
+            <p class="subtitle">O <span class="highlight">mais avançado hub</span> de scripts para Roblox com ferramentas premium, atualizações diárias e suporte 24/7</p>
+        </header>
+
+        <!-- Banner de promoção -->
+        <div class="promo-banner">
+            <i class="fas fa-bolt"></i>
+            <div class="promo-text">PROMOÇÃO: Ganhe <span>ACESSO VITALÍCIO</span> ao comprar qualquer key hoje!</div>
+        </div>
+
+        <!-- Botões de navegação -->
+        <nav class="nav-buttons">
+            <a href="https://discord.gg/gZ6BCJ2t" class="nav-btn" target="_blank">
+                <i class="fas fa-key"></i>
+                Key Premium
+            </a>
+            <a href="https://youtube.com/@gabryelblox-hr8yl?si=bmf3SMlzqv35Q9eC" class="nav-btn" target="_blank">
+                <i class="fab fa-youtube"></i>
+                YouTube
+            </a>
+            <a href="https://discord.gg/gZ6BCJ2t" class="nav-btn" target="_blank">
+                <i class="fab fa-discord"></i>
+                Discord
+            </a>
+            <button class="nav-btn" onclick="showAlert('Tutoriais em desenvolvimento - disponível em breve!')">
+                <i class="fas fa-graduation-cap"></i>
+                Tutoriais
+            </button>
+        </nav>
+
+                <!-- Barra de busca -->
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Pesquise por scripts, jogos ou funcionalidades..." id="searchInput">
+            <button class="search-btn" onclick="searchScripts()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <!-- Grid de scripts -->
+        <div class="scripts-grid" id="scriptsGrid">
+            <div class="script-card">
+                <div class="script-header">
+                    <div class="status-indicator offline"></div>
+                    <div class="script-title">Ink Game</div>
+                    <div class="game-badge">Roblox</div>
+                </div>
+                <div class="script-description">
+                    Script com várias utilidades, incluindo um fling mortal que elimina jogadores instantaneamente! Totalmente otimizado para performance.
+                </div>
+                <div class="features">
+                    <span class="feature">Fling Instantâneo</span>
+                    <span class="feature">Auto Farm</span>
+                    <span class="feature">Wallhack</span>
+                    <span class="feature">Anti-Kick</span>
+                </div>
+                <div class="script-code">Em desenvolvimento</div>
+                <button class="copy-btn" disabled>
+                    <i class="fas fa-tools"></i>
+                    Em Atualização
+                </button>
+
+            </div>
+
+            <div class="script-card">
+                <div class="script-header">
+                    <div class="status-indicator offline"></div>
+                    <div class="script-title">Teen Titans Battlegrounds</div>
+                    <div class="game-badge">Roblox</div>
+                </div>
+                <div class="script-description">
+                    Hub completo com auto-farm, teleporte, velocidade aumentada, aimbot e ESP. Atualizado diariamente para máxima eficiência.
+                </div>
+                <div class="features">
+                    <span class="feature">Auto-Farm</span>
+                    <span class="feature">Aimbot</span>
+                    <span class="feature">ESP</span>
+                    <span class="feature">Teleporte</span>
+                </div>
+                <div class="script-code">Em desenvolvimento</div>
+                <button class="copy-btn" disabled>
+                    <i class="fas fa-tools"></i>
+                    Em Atualização
+                </button>
+            </div>
+
+            <div class="script-card">
+                <div class="script-header">
+                    <div class="status-indicator offline"></div>
+                    <div class="script-title">Project Smash</div>
+                    <div class="game-badge">Roblox</div>
+                </div>
+                <div class="script-description">
+                    Domine o jogo com kills automáticas, rank boost, auto ataque e recursos exclusivos para dominar todas as partidas.
+                </div>
+                <div class="features">
+                    <span class="feature">Auto-Kill</span>
+                    <span class="feature">Rank Boost</span>
+                    <span class="feature">Auto-Ataque</span>
+                    <span class="feature">God Mode</span>
+                </div>
+                <div class="script-code">Em desenvolvimento</div>
+                <button class="copy-btn" disabled>
+                    <i class="fas fa-tools"></i>
+                    Em Atualização
+                </button>
+                </button>
+            </div>
+
+            <div class="script-card">
+                <div class="script-header">
+                    <div class="status-indicator offline"></div>
+                    <div class="script-title">Jailbreak</div>
+                    <div class="game-badge">Roblox</div>
+                </div>
+                <div class="script-description">
+                    Script em atualização com novas funcionalidades incríveis. Voltando em breve com autofarm melhorado, auto-roubo e recursos premium.
+                </div>
+                <div class="features">
+                    <span class="feature">Auto-Farm</span>
+                    <span class="feature">Auto-Roubo</span>
+                    <span class="feature">Fly Hack</span>
+                    <span class="feature">Speed Hack</span>
+                </div>
+                <div class="script-code">Em desenvolvimento</div>
+                <button class="copy-btn" disabled>
+                    <i class="fas fa-tools"></i>
+                    Em Atualização
+                </button>
+            </div>
+        </div>
+
+        <!-- Seção de estatísticas -->
+        <div class="stats-section">
+            <h2 class="stats-title">NOSSOS NÚMEROS IMPRESSIONAM</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="stat-number">15K+</div>
+                    <div class="stat-label">Linhas de Código</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number">8.2K+</div>
+                    <div class="stat-label">Usuários Ativos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="stat-number">24+</div>
+                    <div class="stat-label">Jogos Suportados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="stat-number">365+</div>
+                    <div class="stat-label">Atualizações/Ano</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Bolado Hub</h3>
+                <p style="color: var(--gray); line-height: 1.7; margin-bottom: 20px;">
+                    O hub mais avançado de scripts para Roblox, oferecendo ferramentas premium, atualizações constantes e suporte especializado.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Scripts Populares</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Novos Lançamentos</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tutoriais</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Chaves Premium</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Suporte Técnico</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Recursos</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentação</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> API para Devs</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Fórum da Comunidade</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Sistema de Sugestões</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Status do Servidor</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Termos de Uso</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Política de Privacidade</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Isenção de Responsabilidade</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Política de Cookies</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Licenças</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2023 Bolado Hub. Todos os direitos reservados. Este site não é afiliado à Roblox Corporation.
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar os ícones do Feather
+        feather.replace();
+
+        // Criar efeito de partículas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamanho e posição aleatórios
+                const size = Math.random() * 10 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100 + 100;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 15;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Cor aleatória
+                const colors = ['#ff3c78', '#00d9ff', '#9d4edd', '#ff6d00'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = color;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Função para mostrar alertas
+        function showAlert(message) {
+            alert(message);
+        }
+
+        // Função para copiar script
+        function copyScript(button) {
+            const scriptCard = button.closest('.script-card');
+            const scriptCode = scriptCard.querySelector('.script-code').textContent;
+            
+            navigator.clipboard.writeText(scriptCode).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                button.style.background = 'linear-gradient(145deg, #00c853, #009624)';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = 'linear-gradient(145deg, var(--primary), var(--primary-dark))';
+                }, 2000);
+            }).catch(err => {
+                console.error('Erro ao copiar: ', err);
+                button.innerHTML = '<i class="fas fa-times"></i> Erro!';
+                button.style.background = 'linear-gradient(145deg, #f44336, #d32f2f)';
+                
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i> Copiar Script';
+                    button.style.background = 'linear-gradient(145deg, var(--primary), var(--primary-dark))';
+                }, 2000);
+            });
+        }
+
+        // Função de busca
+        function searchScripts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const scriptCards = document.querySelectorAll('.script-card');
+            let hasResults = false;
+            
+            scriptCards.forEach(card => {
+                const title = card.querySelector('.script-title').textContent.toLowerCase();
+                const description = card.querySelector('.script-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Mostrar mensagem se não houver resultados
+            const noResults = document.getElementById('noResults');
+            if (noResults) {
+                noResults.style.display = hasResults ? 'none' : 'block';
+            }
+        }
+
+        // Permitir busca com Enter
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchScripts();
+            }
+        });
+
+        // Efeito de digitação no placeholder
+        let placeholderText = "Explore scripts para Arsenal, Jailbreak, Project Smash...";
+        let placeholderIndex = 0;
+        let typingSpeed = 100;
+        let deletingSpeed = 50;
+        let isDeleting = false;
+        
+        function typePlaceholder() {
+            const searchInput = document.getElementById('searchInput');
+            const currentText = placeholderText.substring(0, placeholderIndex);
+            
+            searchInput.placeholder = currentText + "|";
+            
+            if (!isDeleting && placeholderIndex < placeholderText.length) {
+                placeholderIndex++;
+                setTimeout(typePlaceholder, typingSpeed);
+            } else if (isDeleting && placeholderIndex > 0) {
+                placeholderIndex--;
+                setTimeout(typePlaceholder, deletingSpeed);
+            } else {
+                isDeleting = !isDeleting;
+                if (!isDeleting) {
+                    placeholderIndex++;
+                }
+                setTimeout(typePlaceholder, isDeleting ? 1000 : typingSpeed);
+            }
+        }
+
+        // Inicializar efeitos
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            typePlaceholder();
+        });
+    </script>
+</body>
+</html>
+        
